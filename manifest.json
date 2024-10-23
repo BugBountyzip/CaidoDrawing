@@ -1,30 +1,20 @@
 {
-  "id": "starterkit-plugin",
-  "name": "StarterKit Plugin",
-  "version": "0.1.0",
-  "description": "This is a starterkit plugin",
+  "id": "cursor-pen",
+  "name": "Screening Drawing",
+  "version": "2.0.0",
+  "description": "A plugin that turns the cursor into a drawing pen",
   "author": {
-    "name": "Caido Labs Inc.",
-    "email": "dev@caido.io",
-    "url": "https://github.com/caido/starterkit-plugin"
+    "name": "Tur24Tur / BugBountyZip",
+    "email": "no-reply@NoBugEscapes.com",
+    "url": "https://github.com/BugBountyzip"
   },
   "plugins": [
     {
       "kind": "frontend",
-      "id": "caido-extra-commands",
-      "name": "Extra Commands",
+      "id": "cursor-pen-frontend",
+      "name": "Cursor Pen Frontend",
       "entrypoint": "frontend/script.js",
-      "style": "frontend/style.css",
-      "backend": {
-        "id": "caido-extra-commands-backend"
-      }
-    },
-    {
-      "kind": "backend",
-      "id": "caido-extra-commands-backend",
-      "name": "Extra Commands Backend",
-      "runtime": "javascript",
-      "entrypoint": "backend/script.js"
+      "style": "frontend/style.css"
     }
   ]
 }
