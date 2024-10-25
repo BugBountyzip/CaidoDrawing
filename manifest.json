@@ -1,7 +1,7 @@
 {
   "id": "cursor-pen",
   "name": "Screen Drawing",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "A plugin that turns the cursor into a drawing pen",
   "author": {
     "name": "Tur24Tur / BugBountyZip",
