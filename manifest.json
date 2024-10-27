@@ -1,7 +1,7 @@
 {
   "id": "cursor-pen",
-  "name": "Screen Drawing",
-  "version": "2.0.6",
+  "name": "Screening Drawing",
+  "version": "2.0.7",
   "description": "A plugin that turns the cursor into a drawing pen",
   "author": {
     "name": "Tur24Tur / BugBountyZip",
@@ -13,8 +13,7 @@
       "kind": "frontend",
       "id": "cursor-pen-frontend",
       "name": "Cursor Pen Frontend",
-      "entrypoint": "frontend/script.js",
-      "style": "frontend/style.css"
+      "entrypoint": "frontend/script.js"
     }
   ]
 }
