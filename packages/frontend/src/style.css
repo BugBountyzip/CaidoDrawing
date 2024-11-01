@@ -1,0 +1,211 @@
+.header-hider {
+  padding: 20px;
+  color: var(--c-fg-default);
+  background-color: var(--c-bg-default);
+  min-height: 100vh;
+}
+
+.header-hider h1 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: var(--c-fg-primary);
+}
+
+.header-hider .description {
+  color: var(--c-fg-subtle);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.header-hider .toggle-section {
+  margin-bottom: 20px;
+}
+
+.header-hider .toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--c-fg-default);
+}
+
+.header-hider .toggle-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.header-hider .header-section {
+  background-color: var(--c-bg-subtle);
+  border: 1px solid var(--c-border-default);
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.header-hider .header-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  border: 1px solid var(--c-border-subtle);
+  border-radius: 3px;
+  user-select: none;
+}
+
+.header-hider .header-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--c-fg-default);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.header-hider .header-item:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background-color: #a0213e;
+  transition: height 0.2s ease;
+}
+
+.header-hider .header-item:hover {
+  background-color: rgba(160, 33, 62, 0.1);
+}
+
+.header-hider .header-item:hover:before {
+  height: 100%;
+}
+
+.header-hider .header-item.selected {
+  background-color: rgba(160, 33, 62, 0.2);
+  color: var(--c-fg-default);
+  font-weight: 500;
+}
+
+.header-hider .header-item.selected:before {
+  height: 100%;
+}
+
+.header-hider .header-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.header-hider .header-controls button {
+  position: relative;
+  overflow: hidden;
+  padding: 8px 12px;
+  background-color: #a0213e;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.header-hider .header-controls button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.header-hider .header-controls button:hover:after {
+  width: 200%;
+  height: 200%;
+}
+
+.header-hider .header-controls button:hover {
+  background-color: #8a1c36;
+}
+
+.header-hider .header-controls button:active {
+  transform: translateY(1px);
+}
+
+.header-hider .import-export-controls {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.header-hider .add-section {
+  display: flex;
+  gap: 10px;
+}
+
+.header-hider .header-input {
+  flex: 1;
+  padding: 8px 12px;
+  background-color: var(--c-bg-input);
+  color: var(--c-fg-input);
+  border: 1px solid var(--c-border-input);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.header-hider .header-input:focus {
+  outline: none;
+  border-color: #a0213e;
+  box-shadow: 0 0 0 2px rgba(160, 33, 62, 0.2);
+}
+
+.header-hider .add-section button {
+  padding: 8px 12px;
+  background-color: #a0213e;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.header-hider .add-section button:hover {
+  background-color: #8a1c36;
+}
+
+.header-hider .selection-info {
+  font-size: 12px;
+  color: var(--c-fg-subtle);
+  margin-top: 5px;
+  text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+  .header-hider .header-controls {
+    flex-direction: column;
+  }
+  
+  .header-hider .import-export-controls {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+.header-hider ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.header-hider ::-webkit-scrollbar-track {
+  background: var(--c-bg-subtle);
+}
+
+.header-hider ::-webkit-scrollbar-thumb {
+  background: var(--c-border-default);
+  border-radius: 4px;
+}
+
+.header-hider ::-webkit-scrollbar-thumb:hover {
+  background: var(--c-border-hover);
+}
