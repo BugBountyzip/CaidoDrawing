@@ -8,6 +8,8 @@ let currentSize = 2;
 let isDrawing = false;
 let startX, startY, endX, endY;
 let blurOverlays = [];
+// track all drawings to support undo functionality
+let drawings = [];
 
 const injectStyles = () => {
   const style = document.createElement('style');
@@ -193,12 +195,18 @@ const stopDrawing = () => {
     blurDiv.style.zIndex = '2147483647'; // above the canvas
     document.body.appendChild(blurDiv);
     blurOverlays.push(blurDiv);
+    
+    
+    drawings.push({ type: 'blur', element: blurDiv });
   } else {
     // create an image element to display the drawing
     const img = new Image();
     img.src = tempCanvas.toDataURL();
     img.className = 'drawing-image';
     document.body.appendChild(img);
+    
+    
+    drawings.push({ type: 'drawing', element: img });
   }
 
   tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
@@ -220,15 +228,37 @@ const drawSquare = (context, startX, startY, endX, endY) => {
 };
 
 const clearCanvas = () => {
-  // remove all drawings
+  
   const images = document.querySelectorAll('.drawing-image');
   images.forEach((img) => img.remove());
 
-  // remove all blur overlays
+  
   blurOverlays.forEach((overlay) => overlay.remove());
   blurOverlays = [];
+  
+  
+  drawings = [];
 
   tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+};
+
+
+const undoLastDrawing = () => {
+  if (drawings.length === 0) return;
+  
+  
+  const lastDrawing = drawings.pop();
+  
+  
+  lastDrawing.element.remove();
+  
+  
+  if (lastDrawing.type === 'blur') {
+    const index = blurOverlays.indexOf(lastDrawing.element);
+    if (index !== -1) {
+      blurOverlays.splice(index, 1);
+    }
+  }
 };
 
 const togglePenMode = () => {
@@ -257,6 +287,11 @@ const createToolbar = () => {
   const clearButton = document.createElement('button');
   clearButton.textContent = 'Clear';
   clearButton.onclick = clearCanvas;
+  
+  // i added new button for undo 
+  const undoButton = document.createElement('button');
+  undoButton.textContent = 'Undo';
+  undoButton.onclick = undoLastDrawing;
 
   const colorPicker = document.createElement('input');
   colorPicker.type = 'color';
@@ -296,6 +331,7 @@ const createToolbar = () => {
 
   toolbar.appendChild(closeButton);
   toolbar.appendChild(clearButton);
+  toolbar.appendChild(undoButton); 
   toolbar.appendChild(colorPicker);
   toolbar.appendChild(sizeInput);
   toolbar.appendChild(toolSelect);
@@ -325,6 +361,7 @@ const createPage = (sdk) => {
     <ul>
       <li>Press <strong>F12</strong> to toggle the drawing mode on and off.</li>
       <li>Use the toolbar at the top-right corner to select tools, colors, and sizes.</li>
+      <li>Press <strong>Undo</strong> to remove the most recent drawing.</li>
       <li>Press <strong>F12</strong> again or click the <strong>Close</strong> button to deactivate the drawing mode.</li>
     </ul>
     <p>If you need any help, join our <a href="#" id="discord-link">Discord server</a>.</p>
